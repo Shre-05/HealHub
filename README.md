@@ -2,6 +2,7 @@
   Welcome to HealHub, your go-to platform for mental health support and resources. HealHub is designed to provide a safe and supportive environment where individuals can access various mental health services, connect with professionals, and find valuable resources to support their mental well-being.
 
 **Features**
+
 1.User Authentication: Secure login system to ensure privacy and confidentiality.
 2.Connect with Professionals: Access to a network of licensed mental health professionals for counseling and therapy sessions.
 3.Community Support: Engage with a supportive community of individuals facing similar challenges and share experiences.

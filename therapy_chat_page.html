@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("file:///c:/Users/Lenovo/Pictures/b.jpg"); /* Add the correct path to your nature background image */
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+    #chat {
+      margin: 50px auto;
+      width: 60%;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    textarea {
+      margin-top: 20px;
+      font-size: 20px; /* Increase font size */
+    }
+    button {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>OpenAI Chatbot</h1>
+  <div id="chat">
+    <p>How can I help you today?</p>
+  </div>
+  <textarea id="input" rows="4" cols="50" placeholder="Ask a question..."></textarea>
+  <button onclick="generateResponse()">Generate Response</button>
+
+  <script>
+    async function generateResponse() {
+      const input = document.getElementById('input').value;
+      const apiKey = "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"; // Replace with your actual OpenAI API key
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          prompt: input,
+          max_tokens: 150,
+          temperature: 0.7 // Adjust temperature as needed
+        })
+      };
+      
+      try {
+        const response = await fetch('https://api.openai.com/v1/completions', requestOptions);
+        if (!response.ok) {
+          throw new Error('Failed to receive response from the server.');
+        }
+        const responseData = await response.json();
+        
+        const chatDiv = document.getElementById('chat');
+        const responseDiv = document.createElement('div');
+        responseDiv.textContent = `User: ${input}\nAI: ${responseData.choices[0].text}`;
+        chatDiv.appendChild(responseDiv);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    
+  </script>
+</body>
+</html>
